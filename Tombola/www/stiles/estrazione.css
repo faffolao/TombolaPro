@@ -20,7 +20,7 @@ h1{
   font-size: 16px;
 }
 
-table .urlo{
+table .casella{
   text-align: center;
   background-color: white;
   font-size: 1.7vw;
@@ -31,7 +31,7 @@ table .urlo{
 /****************** numero estratto ******************/
 .bigNumber{
   color: #800000;
-  font-size: 250px;
+  font-size: 407px;
   display: none;
   text-align: center;
 }

@@ -1,14 +1,39 @@
-var numeriEstratti = new Array;
-var giocate = new Array("ambo","terna","quaterna","cinquina","tombola","tombolino");
+var numeriDisponibili = new Array;
+var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "tombola", "tombolino");
 var giocataCorrente = 0;
+var numeriEstratti = new Array;
 
-function creazioneTabella(){
-  var n=1;
+/* caricamento numeri precedenti */
+function caricaDatiPrec(){
+	$.ajax({
+		url: 'http://localhost:3000/leggiNumeri',
+		contentType: 'application/json',
+		success: function(response){
+			// quando viene caricato l'array vengono ripristinati i vecchi numeri
+			numeriEstratti = response.numeriEstratti;
+
+			numeriDisponibili = numeriDisponibili.diff(numeriEstratti);
+			$(".lastNumbers").html(numeriEstratti.toString());
+			
+			numeriEstratti.forEach(function(i){
+				$("#" + i).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
+			});
+
+			//recupero giocata
+			giocataCorrente = response.giocataCorrente;
+			document.getElementById("giocataValida").innerHTML = giocate[giocataCorrente];
+		}
+	});
+};
+
+
+function creazioneTabella() {
+	var n = 1;
 	document.write('<table class="table table-borderless" id="tabella">');
 
-	for(i=1;i<=9;i++){
+	for (i = 1; i <= 9; i++) {
 		document.write('<tr>');
-		for(j=1;j<=10;j++){
+		for (j = 1; j <= 10; j++) {
 			document.write('<td class="casella" id="' + n + '">' + n + '</td>');
 			n++;
 		}
@@ -18,75 +43,92 @@ function creazioneTabella(){
 	document.write('</table>');
 }
 
-function estrazione(){
-	var num;
+function popolaArrayNumeri() {
+	for (i = 0; i < 90; i++) {
+		numeriDisponibili.push(i + 1);
+	}
+}
 
-	do{
-		num = Math.floor((Math.random() * 90) + 1);
-	}while(!numeroUnico(num));
+function estrazione() {
+	var rnd = Math.floor((Math.random() * numeriDisponibili.length + 1));
+	var num = numeriDisponibili.splice((rnd - 1), 1);	/* viene rimosso l'elemento rnd e non vengono lasciati spazi */
 
-	numeriEstratti.push(num);
-
-	$("#"+num).css({"background-color":"#ff3300","border":"1.5px solid brown","color":"white"});
+	$("#" + num).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
 
 	$("#numeroEstratto").html(num);
+	numeriEstratti.unshift(num);
 
 	//nascondo la tabella e mostro il numero estratto
-	$("#tabella").css("display","none");
-	$(".bigNumber").css("display","block");
+	$("#tabella").css("display", "none");
+	$(".bigNumber").css("display", "block");
 
 	setTimeout(
-		function(){
-      $("#tabella").css("display","table");
-    	$(".bigNumber").css("display","none");
+		function () {
+			$("#tabella").css("display", "table");
+			$(".bigNumber").css("display", "none");
 		}, 1000);
 
-	$(".lastNumbers").html(visualizzaArray());
+	$(".lastNumbers").html(numeriEstratti.toString());
+
+	scritturaSuFile();
 }
 
-function numeroUnico(num){
-	for(i=0;i<numeriEstratti.length;i++){
-		if(numeriEstratti[i] == num){
-			return false;
-		}
-	}
-	return true;
-}
-
-function visualizzaArray(){
-	var s = "";
-	for(i=numeriEstratti.length-1;i>=0;i--){
-		s+=numeriEstratti[i] + " ";
-	}
-	return s;
-}
-
-function avanzaGiocata(){
-	if(giocataCorrente >= 5){
-		msgbox("Errore","Le giocate sono esaurite.");
-	}else{
+function avanzaGiocata() {
+	if (giocataCorrente >= 5) {
+		msgbox("Errore", "Le giocate sono esaurite.");
+	} else {
 		giocataCorrente++;
-		document.getElementById("giocataValida").innerHTML=giocate[giocataCorrente];
+		document.getElementById("giocataValida").innerHTML = giocate[giocataCorrente];
 	}
 }
 
-function arretraGiocata(){
-	if(giocataCorrente <= 0){
-		msgbox("Errore","Impossibile andare indietro.");
-	}else{
+function arretraGiocata() {
+	if (giocataCorrente <= 0) {
+		msgbox("Errore", "Impossibile andare indietro.");
+	} else {
 		giocataCorrente--;
-		document.getElementById("giocataValida").innerHTML=giocate[giocataCorrente];
+		document.getElementById("giocataValida").innerHTML = giocate[giocataCorrente];
 	}
 }
 
-function nuovaPartita(){
-	if(confirm("Desideri iniziare una nuova partita?")){
-		window.location.reload();
-	}
+function nuovaPartita() {
+	var btnSi = "<button class='btn btn-brown' onclick='cancellaTutto()'>&nbsp;Si&nbsp;</button>";
+	var btnNo = "<button class='btn btn-brown' onclick='closeModal()'>&nbsp;No&nbsp;</button>";
+	msgbox("Avviso", "Vuoi iniziare una nuova partita?<br>" + btnSi + "&nbsp;" + btnNo);
 }
 
-function tornaIndietro(){
-  if(confirm("Vuoi uscire dalla partita in corso e tornare indietro alla home?")){
-    window.location = "index.html";
-  }
+function tornaIndietro() {
+	var btnSi = "<button class='btn btn-brown' onclick='goToHome()'>&nbsp;Si&nbsp;</button>";
+	var btnNo = "<button class='btn btn-brown' onclick='closeModal()'>&nbsp;No&nbsp;</button>";
+	msgbox("Avviso", "Vuoi tornare alla home page?<br>" + btnSi + "&nbsp;" + btnNo);
+}
+
+/* funzione per differenza di due array */
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
+/* funzione per il salvataggio su json della partita */
+function scritturaSuFile(){
+	$.ajax({
+		url: 'http://localhost:3000/scriviNumeri',
+		method: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify({numeriEstratti:numeriEstratti, giocataCorrente:giocataCorrente}),
+		success: function(response){
+			console.log(response);
+		}
+	});
+}
+
+/* funzione per cancellare il tabellone e iniziare una nuova partita */
+function cancellaTutto(){
+	$.ajax({
+		url: 'http://localhost:3000/eliminaNumeri',
+		method: 'DELETE',
+		contentType: 'application/json',
+		success: function(response){
+			location.reload();
+		}
+	});
 }

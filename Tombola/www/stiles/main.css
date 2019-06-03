@@ -36,7 +36,7 @@ body{
 
 /* The Close Button */
 .close {
-  float: right;
+  float: left;
   font-size: 26px;
   font-weight: bold;
 }
@@ -150,3 +150,8 @@ h3{
   #littleFooter{display: block;}
 }
 
+/************** colore di selezione dropdown-item **********/
+.dropdown-item:active{
+  background-color: brown;
+  color: white;
+}
