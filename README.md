@@ -15,12 +15,12 @@
 <li>Node.js installato. Nel caso non sia installato è possibile scaricarlo da <a href="https://nodejs.org/">https://nodejs.org/</a>.</li>
 </ul>
 <h2 id="come-avviarla">Come avviarla</h2>
-<p>Posizionarsi nella cartella <code>Tombola/www</code> e digitare:</p>
+<p>Posizionarsi nella cartella <code>Tombola_desktop</code> e digitare:</p>
 <pre><code>node server
 </code></pre>
 <p>per avviare il server della Tombola.<br>
 Per iniziare a giocare digitare nel proprio browser web l’indirizzo <a href="http://localhost:3000">http://localhost:3000</a>.</p>
-<p>Un file eseguibile (<em>tombola.bat</em> per Windows e <em><a href="http://tombola.sh">tombola.sh</a></em> per linux e macOS) è predisposto per automatizzare le procedure indicate sopra.<br>
+<p>Un file eseguibile (<em>tombola.bat</em> per Windows e <em><a href="http://tombola.sh">tombola.sh</a></em> per linux e macOS) è predisposto per automatizzare le procedure indicate sopra. Per avviarlo su Windows è sufficiente un doppio click sul file, mentre su Linux e su macOS è necessario <strong>fare un doppio click e avviarlo sul terminale.</strong><br>
 <strong>Per garantire il corretto funzionamento di alcune librerie è consigliato avere una connessione ad Internet.</strong></p>
 <h2 id="changelog">Changelog</h2>
 <ul>
