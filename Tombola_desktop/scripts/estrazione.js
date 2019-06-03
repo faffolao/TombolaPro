@@ -1,7 +1,7 @@
-var numeriDisponibili = new Array;
+var numeriDisponibili = new Array;			/* contiene i numeri non ancora estratti */
 var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "tombola", "tombolino");
-var giocataCorrente = 0;
-var numeriEstratti = new Array;
+var giocataCorrente = 0;					/* indica la giocata in corso (pos. array giocate) */
+var numeriEstratti = new Array;				// contiene i numeri che sono stati estratti
 
 /* caricamento numeri precedenti */
 function caricaDatiPrec(){
@@ -12,10 +12,10 @@ function caricaDatiPrec(){
 			// quando viene caricato l'array vengono ripristinati i vecchi numeri
 			numeriEstratti = response.numeriEstratti;
 
-			numeriDisponibili = numeriDisponibili.diff(numeriEstratti);
+			numeriDisponibili = numeriDisponibili.diff(numeriEstratti);		// differenza tra i numeri disponibili e quelli che sono stati estratti
 			$(".lastNumbers").html(numeriEstratti.toString());
 			
-			numeriEstratti.forEach(function(i){
+			numeriEstratti.forEach(function(i){		// evidenzio i numeri che erano stati estratti
 				$("#" + i).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
 			});
 
@@ -53,7 +53,7 @@ function estrazione() {
 	var rnd = Math.floor((Math.random() * numeriDisponibili.length + 1));
 	var num = numeriDisponibili.splice((rnd - 1), 1);	/* viene rimosso l'elemento rnd e non vengono lasciati spazi */
 
-	$("#" + num).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
+	$("#" + num).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });	// evidenzio il numero estratto
 
 	$("#numeroEstratto").html(num);
 	numeriEstratti.unshift(num);
@@ -70,7 +70,7 @@ function estrazione() {
 
 	$(".lastNumbers").html(numeriEstratti.toString());
 
-	scritturaSuFile();
+	scritturaSuFile(num);
 }
 
 function avanzaGiocata() {
@@ -109,26 +109,21 @@ Array.prototype.diff = function(a) {
 };
 
 /* funzione per il salvataggio su json della partita */
-function scritturaSuFile(){
-	$.ajax({
-		url: 'http://localhost:3000/scriviNumeri',
-		method: 'POST',
-		contentType: 'application/json',
-		data: JSON.stringify({numeriEstratti:numeriEstratti, giocataCorrente:giocataCorrente}),
-		success: function(response){
-			console.log(response);
-		}
-	});
+function scritturaSuFile(num){
+	// apro un nuovo socket e comunico al server che ho estratto un nuovo numero
+	var socket = io();
+	socket.emit('nuovo numero', {numero: num, giocataCorrente: giocataCorrente});
+	return false;
 }
 
 /* funzione per cancellare il tabellone e iniziare una nuova partita */
 function cancellaTutto(){
-	$.ajax({
-		url: 'http://localhost:3000/eliminaNumeri',
-		method: 'DELETE',
-		contentType: 'application/json',
-		success: function(response){
-			location.reload();
-		}
+	// comunico al server che bisogna ricominciare una nuova partita
+	var socket = io();
+	socket.emit('nuova partita');
+	
+	// quando i dati vecchi sono stati cancellati si riaggiorna la vista
+	socket.on('partita ricominciata',function(){
+		location.reload();
 	});
 }

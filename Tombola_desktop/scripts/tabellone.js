@@ -1,12 +1,11 @@
-var numeriEstratti = new Array();
-var giocataCorrente = 0;
+var numeriEstratti = new Array();       // contiene i numeri che sono stati estratti
+var giocataCorrente = 0;                // indica la giocata in corso (pos. nell'array giocate)
 var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "tombola", "tombolino");
-var partitaNuova = true;
 
 $(document).ready(function(){
     creazioneTabella();                                 /* creazione della tabella */
     ripristinoDatiPrec();                               /* ripristino numeri da json */
-    setInterval(function (){controlloNumeri()}, 100);   /* controllo continuo nuovi numeri */
+    controlloNumeri();                                  // controllo disponibilità di nuovi numeri
 });
 
 /* funzione per creare la tabella */
@@ -32,27 +31,22 @@ Array.prototype.diff = function(a) {
 };
 
 function controlloNumeri(){
-    $.ajax({
-        url: 'http://localhost:3000/leggiNumeri',
-		contentType: 'application/json',
-		success: function(response){
-            if(response.numeriEstratti.length <= 0 && !partitaNuova){
-                partitaNuova = true;
-                location.reload();
-            }
+    // apro un socket e controllo se è arrivato un nuovo numero o se la partita è ricominciata
+    var socket = io();
+    socket.on('nuovo numero estratto', function(response){
+        /* controllo se ci sono differenze tra i numeri */
+        var tmp = response.numeriEstratti.diff(numeriEstratti);    /* la differenza dei due array viene messa qui */
+        if(tmp.length > 0){ /* se vi sono effettivamente delle differenze */
+            /* prendo sempre il numero in prima posizione */
+            $("#" + tmp[0]).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
             
-            /* controllo se ci sono differenze tra i numeri */
-            var tmp = response.numeriEstratti.diff(numeriEstratti);    /* la differenza dei due array viene messa qui */
-            if(tmp.length > 0){ /* se vi sono effettivamente delle differenze */
-                /* prendo sempre il numero in prima posizione */
-                $("#" + tmp[0]).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });
-                
-                numeriEstratti = response.numeriEstratti;
-                giocataCorrente = response.giocataCorrente; /* recupero la giocata in corso */
-                mostraNumero(tmp[0]);
-                partitaNuova = false;
-            }
-		}
+            numeriEstratti = response.numeriEstratti;
+            giocataCorrente = response.giocataCorrente; /* recupero la giocata in corso */
+            mostraNumero(tmp[0]);
+        }
+    });
+    socket.on('partita ricominciata', function(){
+        location.reload();
     });
 }
 
