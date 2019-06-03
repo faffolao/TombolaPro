@@ -1,6 +1,6 @@
 
 <h1 id="tombola">Tombola</h1>
-<p>Semplice applicazione per la tombola per Android, creata con HTML, CSS, Bootstrap 4, JS, jQuery, Node.js e Socket.io e convertita in applicativo Android tramite Cordova.</p>
+<p>Semplice applicazione per la tombola, creata con HTML, CSS, Bootstrap 4, JS, jQuery, Node.js e Socket.io e convertita in applicativo Android tramite Cordova.</p>
 <h2 id="funzionalità">Funzionalità</h2>
 <ul>
 <li>Compatibile con tutti i sistemi operativi (Windows, macOS, Linux)</li>
