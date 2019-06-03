@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Estrazione numeri - Tombola by Faffolao</title>
+  <link rel="icon" href="icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- inizio importazione bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- fine importazione bootstrap -->
+
+  <!-- inizio importazione script e stili personali -->
+  <link rel="stylesheet" href="stiles/main.css">
+  <script src="scripts/modal.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="stiles/estrazione.css">
+  <script src="scripts/estrazione.js" charset="utf-8"></script>
+  <!-- fine importazione script personali -->
+</head>
+
+<body>
+  <div class="content">
+    <div class="row">
+      <div class="col-md-8 tabellone">
+        <script type="text/javascript">
+          popolaArrayNumeri();
+          creazioneTabella();
+          caricaDatiPrec();
+        </script>
+        <div class="bigNumber">
+          <p id="numeroEstratto"></p>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <h1>Tombola</h1>
+
+        <h3>Ultimi numeri estratti</h3>
+        <div class="lastNumbers text-center">ancora nessuno</div><br>
+
+        <button type="button" class="btn-brown bigbtn" onclick="estrazione()">Estrai</button><br><br><br>
+
+        <h3>Giocata valida</h3>
+        <h4 id="giocataValida">ambo</h4>
+        <button type="button" class="btn-brown littlebtn" onclick="avanzaGiocata()">Avanti</button>
+        <button type="button" class="btn-brown littlebtn" onclick="arretraGiocata()">Indietro</button>
+
+        <br><br><br>
+        <button type="button" class="btn" onclick="nuovaPartita()">Nuova partita</button>
+        <button type="button" class="btn" onclick="tornaIndietro()">Torna indietro</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer text-center">
+    <div id="littleFooter">
+      <img src="icon.png" width="30"> ·
+      <button type="button" id="openModal" class="btn btn-info"><img src="img/info.png" width="100%"
+          alt="informazioni su"></button>
+    </div>
+
+    <div id="bigFooter">
+      <img src="icon.png" width="50"><br><br>
+      <p id="info-par">Tombola v2.0 - &copy; 2019 Federico Arduini (faffolao)</p>
+    </div>
+  </footer>
+
+  <!-- inizio modale info -->
+  <div id="modale-info" class="modal fixed-bottom">
+    <div class="modal-content">
+      <div class="modal-header close">&times; Informazioni su</div>
+
+      <div class="modal-body">
+        <p>Tombola v2.0</p>
+        <p>&copy; 2019 Federico Arduini (faffolao)</p>
+      </div>
+    </div>
+  </div>
+  <!-- fine modale info -->
+</body>
+
+</html>

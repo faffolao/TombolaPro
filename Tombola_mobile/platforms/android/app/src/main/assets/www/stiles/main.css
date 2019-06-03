@@ -1,0 +1,157 @@
+body{
+  background-color: #F5EFEA;
+  border-top: 5px solid brown;
+  font-family: 'draft', sans-serif;
+}
+
+/***** per il modale info ******/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  bottom: 0;
+  background-color: #fefefe;
+  width: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+  float: left;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+}
+
+.modal-body {padding: 2px 16px;}
+.modal-body h4{font-size: 22px;}
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {bottom: -300px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+/****************** font ****************/
+@font-face {
+  font-family: 'Molliquam';
+  src: url("../fonts/title-font.ttf");
+}
+
+@font-face{
+  font-family: 'draft';
+  src: url("../fonts/draft.otf");
+}
+
+h1{
+  font-family: 'Molliquam', sans-serif;color: #800000;
+  text-align:center;
+  padding-top: 75px;
+  padding-bottom: 60px;
+  font-size: 75px;
+}
+
+h3{
+  text-align: center;
+  color: brown;
+  font-weight: bold;
+}
+
+/******** stile pulsanti **********/
+.btn-brown{
+  background-color: brown;
+  border: none;
+  font-size: 20px;
+  padding: 9px;
+  color: white;
+}
+
+.btn-brown:hover{
+  background-color: #800000;
+  color: white;
+}
+
+.page-footer{
+  width: 100%;
+  display: block;
+  margin-top: 100px;
+}
+
+.btn-info{
+  width:60px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  background-color: transparent;
+}
+
+/********* footer ********/
+#littleFooter{display: none;}
+
+/********* responsività *************/
+@media screen and (max-width: 536px){
+  h1{
+    font-size: 60px;
+  }
+  h3{font-size: 20px;}
+  .btn-brown{font-size: 18px;}
+  .content{border-radius: 0px;}
+  #bigFooter{display: none;}
+  #littleFooter{display: block;}
+}
+
+/************** colore di selezione dropdown-item **********/
+.dropdown-item:active{
+  background-color: brown;
+  color: white;
+}

@@ -1,0 +1,9 @@
+.content {
+  max-width: 780px;
+  margin: auto;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.card{border:none;}
