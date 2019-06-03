@@ -1,6 +1,6 @@
 
 <h1 id="tombola">Tombola</h1>
-<p>Semplice applicazione per la tombola per Android, creata con HTML, CSS, Bootstrap 4, JS, jQuery e convertita in applicativo Android tramite Cordova.</p>
+<p>Semplice applicazione per la tombola per Android, creata con HTML, CSS, Bootstrap 4, JS, jQuery, Node.js e Socket.io e convertita in applicativo Android tramite Cordova.</p>
 <h2 id="funzionalità">Funzionalità</h2>
 <ul>
 <li>Compatibile con tutti i sistemi operativi (Windows, macOS, Linux)</li>
@@ -24,6 +24,7 @@ Per iniziare a giocare digitare nel proprio browser web l’indirizzo <a href="h
 <strong>Per garantire il corretto funzionamento di alcune librerie è consigliato avere una connessione ad Internet.</strong></p>
 <h2 id="changelog">Changelog</h2>
 <ul>
+<li><strong>versione 2.1 (3/6/2019)</strong>: Implementazione di Socket.io (web socket) nel server.</li>
 <li><strong>versione 2.0 (3/6/2019)</strong>: aggiunta del server web basato su Node.js, aggiunta della pagina del tabellone, miglioramento generale della grafica e di alcune funzioni.</li>
 <li><strong>versione 1.0 (30/5/2019)</strong>: release iniziale.</li>
 </ul>
