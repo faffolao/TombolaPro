@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tabellone - Tombola by Faffolao</title>
+    <title>Cartelle tombola - Tombola by Faffolao</title>
     <link rel="icon" href="icon.png">
-
+    
     <!-- inizio importazione bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -14,33 +14,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- fine importazione bootstrap -->
 
-    <!-- inizio inizializzazione socket.io -->
-    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
-    <script>
-      var socket = io();
-    </script>
-    <!-- fine inizializzazione socket.io -->
-
     <!-- inizio importazione script e stili personali -->
     <link rel="stylesheet" href="stiles/main.css">
     <link rel="stylesheet" href="stiles/tabellone.css">
     <script src="scripts/modal.js" charset="utf-8"></script>
-    <script src="scripts/tabellone.js"></script>
+    <script src="scripts/cartelle.js"></script>
     <!-- fine importazione script personali -->
+
+    <!-- nascondo il tabellone 2-->
+    <style>
+      .tabellone2{display:none;}
+    </style>
 </head>
 <body>
     <h1>Tombola</h1>
+    <p class="text-center">Clicca su un numero per coprirlo</p>
 
-    <div class="content">
-        <div class="tabellone"></div>
-        <div class="bigNumber">
-            <p id="numeroEstratto">0</p>
-        </div>
-    </div>
-
-    <div class="giocata-corrente">
-        <p id="par-giocata-corrente">Giocata corrente: <strong>ambo</strong></p>
-        <p>F11 - attiva/disattiva schermo intero</p>
+    <div class="content text-center">
+        <br><div class="tabellone"></div>
+        <div class="tabellone2"></div>
+        <br><hr width="10%">
+        <button class="btn" onclick="aggiungiCartella()">Aggiungi/rimuovi seconda cartella</button>
+        <button class="btn" onclick="location.reload()">Ripristina cartella/e</button>
+        <button class="btn" onclick="window.location = 'index.html'">Torna indietro</button>
     </div>
 
     <footer class="page-footer text-center">
