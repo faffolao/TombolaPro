@@ -25,7 +25,7 @@ Per iniziare a giocare digitare nel proprio browser web l’indirizzo <a href="h
 <p><strong>La versione per Android della Tombola è stata separata dalla versione PC</strong>, è possibile trovarla nel repository TombolaMobile.</p>
 <h2 id="changelog">Changelog</h2>
 <ul>
-<li><strong>(27/7/2019): separazione della versione Android in un nuovo repository (TombolaMobile)</strong>
+<li><strong>versione 2.2.1 (27/7/2019): separazione della versione Android in un nuovo repository (TombolaMobile)</strong>
 <li><strong>versione 2.2 (7/7/2019)</strong>: Aggiunte le cartelle della tombola: è possibile usare fino a due cartelle generate casualmente. Risoluzione di bug minori</li>
 <li><strong>versione 2.1 (3/6/2019)</strong>: Implementazione di Socket.io (web socket) nel server.</li>
 <li><strong>versione 2.0 (3/6/2019)</strong>: aggiunta del server web basato su Node.js, aggiunta della pagina del tabellone, miglioramento generale della grafica e di alcune funzioni.</li>
