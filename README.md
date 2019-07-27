@@ -32,5 +32,5 @@ Per iniziare a giocare digitare nel proprio browser web l’indirizzo <a href="h
 <li><strong>versione 1.0 (30/5/2019)</strong>: release iniziale.</li>
 </ul>
 <h2 id="contatti">Contatti</h2>
-<p>In caso di problemi con l’applicazione è possibile contattarmi scrivendo a <a href="mailto:federico_arduini@live.it">federico_arduini@live.it</a>.</p>
+<p>In caso di problemi con l’applicazione è possibile contattarmi scrivendo a <a href="mailto:federico_arduini@live.it">federicoarduini40@gmail.com</a>.</p>
 
