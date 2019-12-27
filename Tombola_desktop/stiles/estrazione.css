@@ -60,3 +60,11 @@ table .casella{
     font-size: 188px;
   }
 }
+
+/**************** inserimento numeri *********************/
+.txtInserisciNumero{
+  width: 100px;
+  border: 0.5px solid brown;
+  padding: 6px;
+  font-size: 16px;
+}

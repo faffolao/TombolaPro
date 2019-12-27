@@ -49,9 +49,11 @@ function popolaArrayNumeri() {
 	}
 }
 
-function estrazione() {
-	var rnd = Math.floor((Math.random() * numeriDisponibili.length + 1));
-	var num = numeriDisponibili.splice((rnd - 1), 1);	/* viene rimosso l'elemento rnd e non vengono lasciati spazi */
+function estrazione(num) {
+	if(num == null){
+		var rnd = Math.floor((Math.random() * numeriDisponibili.length + 1));
+		num = numeriDisponibili.splice((rnd - 1), 1);	/* viene rimosso l'elemento rnd e non vengono lasciati spazi */
+	}
 
 	$("#" + num).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });	// evidenzio il numero estratto
 
@@ -126,4 +128,8 @@ function cancellaTutto(){
 	socket.on('partita ricominciata',function(){
 		location.reload();
 	});
+}
+
+function inserisciNumero(){
+	estrazione($("#numeroDaInserire").val());
 }
