@@ -53,10 +53,12 @@ function estrazione(num) {
 	if(num == null){
 		var rnd = Math.floor((Math.random() * numeriDisponibili.length + 1));
 		num = numeriDisponibili.splice((rnd - 1), 1);	/* viene rimosso l'elemento rnd e non vengono lasciati spazi */
+	}else{
+		num = Array(num);
 	}
 
 	$("#" + num).css({ "background-color": "#ff3300", "border": "1.5px solid brown", "color": "white" });	// evidenzio il numero estratto
-
+	
 	$("#numeroEstratto").html(num);
 	numeriEstratti.unshift(num);
 
@@ -71,7 +73,7 @@ function estrazione(num) {
 		}, 1000);
 
 	$(".lastNumbers").html(numeriEstratti.toString());
-
+console.log(num);
 	scritturaSuFile(num);
 }
 

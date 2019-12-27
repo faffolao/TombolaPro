@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();						/* importazione mod. express */
 var http = require('http').Server(app);		/* viene aperta la porta 3000 */
 var io = require('socket.io')(http);		/* importazione socket.io */
@@ -12,6 +13,7 @@ var partita = JSON.parse(raw);			// leggo il json e lo trasformo in un oggetto
 console.log("% caricamento JSON");
 
 app.use(helmet());						// indico che sto usando HELMET
+app.use(cors());
 app.use(express.static(__dirname));		// vengono resi fruibili tutti i contenuti della cartella
 app.use(bodyParser.json());
 
