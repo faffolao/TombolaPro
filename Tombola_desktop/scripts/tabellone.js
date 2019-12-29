@@ -1,6 +1,6 @@
 var numeriEstratti = new Array();       // contiene i numeri che sono stati estratti
 var giocataCorrente = 0;                // indica la giocata in corso (pos. nell'array giocate)
-var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "tombola", "tombolino");
+var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "decina", "tombola", "tombolino");
 
 $(document).ready(function(){
     creazioneTabella();                                 /* creazione della tabella */

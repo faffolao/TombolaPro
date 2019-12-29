@@ -1,5 +1,5 @@
 var numeriDisponibili = new Array;			/* contiene i numeri non ancora estratti */
-var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "tombola", "tombolino");
+var giocate = new Array("ambo", "terna", "quaterna", "cinquina", "decina", "tombola", "tombolino");
 var giocataCorrente = 0;					/* indica la giocata in corso (pos. array giocate) */
 var numeriEstratti = new Array;				// contiene i numeri che sono stati estratti
 
@@ -78,7 +78,7 @@ console.log(num);
 }
 
 function avanzaGiocata() {
-	if (giocataCorrente >= 5) {
+	if (giocataCorrente >= 6) {
 		msgbox("Errore", "Le giocate sono esaurite.");
 	} else {
 		giocataCorrente++;
