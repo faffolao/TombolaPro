@@ -4,9 +4,13 @@ $(document).ready(function(){
     $(".tabellone").html(cartella1);
     $(".tabellone2").html(generaCartella());
 
-    $("table").on("click",".casella",function(){
+    /*$("table").on("click",".casella",function(){
         var id = $(this).attr("id");
-        $("#" + id).toggleClass("casellaCoperta");
+        $(".cas-" + id).toggleClass("casellaCoperta");
+    });*/
+    $(".casella").click(function(){
+        var id = $(this).attr("id");
+        $(".cas-" + id).toggleClass("casellaCoperta");
     });
 });
 
@@ -27,7 +31,7 @@ function generaCartella(){
                 if(nNumeri < 5){
                     var rndPos = Math.floor(Math.random() * arrayNum.length + 1);
                     var num = arrayNum.splice((rndPos - 1), 1);
-                    s += '<td class="casella" id="' + num + '">' + num + '</td>';
+                    s += '<td class="casella cas-' + num + '" id="' + num + '">' + num + '</td>';
                     nNumeri++;
                 }else{
                     s += '<td class="casella">&nbsp;</td>';
